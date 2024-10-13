@@ -82,6 +82,96 @@ fun compareAge(age1 : Int , age2 : Int){
     }
 }
 
+//Перегрузка функций
+
+fun sum(a:Int , b:Int) : Int {
+    return a + b
+}
+
+fun sum(a:Double , b:Double) : Double{
+    return a + b
+}
+
+fun sum(a:Int , b: Int , c:Int) : Int{
+    return a + b + c
+}
+
+fun sum(a : Int , b: Double) : Double{
+    return a + b
+}
+
+fun sum(a : Double , b : Int) : Double{
+    return a + b
+}
+
+fun substarct(a:Int , b:Int): Int{
+    return a - b
+}
+
+fun dispalMessage(mes: ()-> Unit){
+    mes()
+}
+
+fun morning(){
+    println("Morning")
+}
+
+fun evening(){
+    println("Evening")
+}
+
+fun action(n1: Int, n2: Int, op:(Int , Int) -> Int){
+    val result = op(n1 , n2)
+    println(result)
+}
+
+fun multiply(a:Int , b:Int) : Int{
+    return a * b
+}
+
+fun empty(a: Int , b: Int): Int{
+    return 0
+}
+
+fun selectAction(key:Int): (Int , Int) -> Int{
+    when(key){
+        1 -> return ::sum
+        2 -> return ::substarct
+        3 -> return ::multiply
+        else -> return ::empty
+    }
+}
+
+fun doOperation(x: Int , y: Int , op: (Int , Int) -> Int){
+    val result = op(x,y)
+    println(result)
+}
+
+fun selectAction2(key: Int) : (Int , Int) -> Int{
+    when(key){
+        1 -> return fun(x:Int , y:Int): Int = x + y
+        2 -> return fun(x:Int , y:Int): Int = x - y
+        3 -> return fun(x:Int , y:Int): Int = x * y
+        else -> return fun(x:Int , y:Int): Int = 0
+    }
+}
+
+
+// Замыкания (closure)
+
+fun outer(): ()->Unit{
+    var n = 5
+    fun inner(){
+        n++
+        println(n)
+    }
+    return ::inner
+}
+
+fun mult(n:Int): (Int)->Int{
+    return {m:Int-> n * m}
+}
+
 fun main() {
 
     // начало работы и знакомство с переменными
@@ -265,36 +355,113 @@ fun main() {
 
 
     // Вызовы функций
-    sendMessage("Hello Kotlin")
-    sendMessage("Привет Kotlin")
-    sendMessage("Salut Kotlin")
+//    sendMessage("Hello Kotlin")
+//    sendMessage("Привет Kotlin")
+//    sendMessage("Salut Kotlin")
+//
+//    dispalyUser("Tom", 23)
+//    dispalyUser("Alice", 19)
+//    dispalyUser("Kate", 25)
+//
+//    dispalyUserDefault("Tom", 23, "Manager")
+//    dispalyUserDefault("Alice", 21)
+//    dispalyUserDefault("Kate")
+//
+//    val arr:Array<Int> = arrayOf(1,2,3,4,5)
+//    operationsArray(arr)
+//
+//    printStrings("Tom", "Bob", "Sam")
+//    printStrings("Kotlin", "JavaScript", "Java", "C#", "C++")
+//
+//    sum(1,2,3,4,5)
+//
+//    printUserGroup(3, "Tom", "Bob", "Alice")
+//    val nums = intArrayOf(1,2,3,4)
+//    changeNumber(*nums , koef = 2)
+//
+//    hi()
+//    hi()
+//    hi()
+//
+//    checkAge(18)
+//    checkAge(101)
+//
+//    square(5)
+//
+//    sum(1,2)
+//    sum(1.5,2.5)
+//    sum(1,2,3)
+//    sum(2,1.5)
+//    sum(1.5,2)
+//
+//    //Переменные-функции
+//
+//    val message: () -> Unit
+//    message = ::hi
+//    message()
+//
+//    val operation: (Int , Int) -> Int  = ::sum
+//    val result = operation(1,3)
+//    println(result)
+//
+//    var operations: (Int , Int) -> Int = ::sum
+//    val res1 : Int = operations(14,9)
+//    println(res1)
+//
+//    operations = ::substarct
+//    val res2 : Int = operations(res1,5)
+//    println(res2)
+//
+//    dispalMessage (::morning)
+//    dispalMessage (::evening)
+//
+//    action(5,3,::sum)
+//    action(3,4,::multiply)
+//    action(5,3,::substarct)
+//
+//    val action1 = selectAction(1)
+//    println(action1(7,8))
+//
+//    val action2 = selectAction(2)
+//    println(action2(8,5))
+//
+//    val del = fun(x: Int , y: Int): Int = x / y
+//    val result3 = del(4,2)
+//    println(result3)
+//
+//    doOperation(1,2,fun(x:Int , y:Int):Int = x + y)
+//    doOperation(3,7,fun(x:Int , y:Int):Int = x - y)
+//
+//    val action4 = selectAction2(1)
+//    println(action4(2,5))
+//
+//    //Лямбда функции
+//    val hello = { println("Hello Kotlin!")}
+//    hello()
+//    hello()
+//
+//    val mesf = {message: String -> println(message)}
+//    mesf("Welcome Home")
+//
+//    val summator = {x:Int , y:Int -> val result = x + y
+//        println("$x + $y = $result")}
+//
+//    val fn = outer()
+//
+//    fn()
+//    fn()
+//    fn()
+//
+//    val func = mult(5)
+//    val result1 = func(6)
+//    println(result1)
+//
+//    val result2 = func(5)
+//    println(result2)
 
-    dispalyUser("Tom", 23)
-    dispalyUser("Alice", 19)
-    dispalyUser("Kate", 25)
 
-    dispalyUserDefault("Tom", 23, "Manager")
-    dispalyUserDefault("Alice", 21)
-    dispalyUserDefault("Kate")
 
-    val arr:Array<Int> = arrayOf(1,2,3,4,5)
-    operationsArray(arr)
 
-    printStrings("Tom", "Bob", "Sam")
-    printStrings("Kotlin", "JavaScript", "Java", "C#", "C++")
 
-    sum(1,2,3,4,5)
 
-    printUserGroup(3, "Tom", "Bob", "Alice")
-    val nums = intArrayOf(1,2,3,4)
-    changeNumber(*nums , koef = 2)
-
-    hi()
-    hi()
-    hi()
-
-    checkAge(18)
-    checkAge(101)
-
-    square(5)
     }
